@@ -7,11 +7,13 @@ class LinkedList
 {
 private:
   ListNode<T> *head;
+  int _size;
 
 public:
   LinkedList()
   {
     head = NULL;
+    _size = 0;
   }
 
   // 添加元素到表尾
@@ -27,19 +29,13 @@ public:
     {
       head = node;
     }
+    _size++;
   }
 
   // 返回表长度
   int size()
   {
-    int i = 0;
-    ListNode<T> *p = head;
-    while (p)
-    {
-      i++;
-      p = p->next;
-    }
-    return i;
+    return _size;
   }
 
   // 弹出表尾元素
@@ -48,6 +44,7 @@ public:
     ListNode<T> *p = head;
     head = head->next;
     return p->val;
+    _size--;
   }
 
   // 获取指定位置的表元素
@@ -58,7 +55,7 @@ public:
     T result;
     while (p)
     {
-      if (index == size() - i - 1)
+      if (index == _size - i - 1)
       {
         result = p->val;
         break;
@@ -72,10 +69,9 @@ public:
   // 移除表头元素
   void remove()
   {
-    int len = size();
     int i = 0;
     ListNode<T> *p = head;
-    while (i < len)
+    while (i < _size)
     {
       if (p->next->next == NULL)
       {
@@ -86,23 +82,24 @@ public:
       p = p->next;
       i++;
     }
+    _size--;
   }
 
   // 删除指定位置的元素
   void remove(int index)
   {
-    int len = size();
     int i = 0;
     ListNode<T> *current = head;
     ListNode<T> *next = head->next;
-    if (index == len - 1)
+    if (index == _size - 1)
     {
       head = head->next;
+      _size--;
       return;
     }
-    while (i < len)
+    while (i < _size)
     {
-      if (index == len - i - 2)
+      if (index == _size - i - 2)
       {
         ListNode<T> *node = current->next->next;
         delete next;
@@ -113,12 +110,14 @@ public:
       next = next->next;
       i++;
     }
+    _size--;
   }
 
   // 清空列表
   void clear()
   {
     head = NULL;
+    _size = 0;
   }
 };
 
@@ -132,6 +131,7 @@ public:
 //   list->push("Golang");
 
 //   // * case1: get(int index)
+//   // cout << list->size() << endl;
 //   // cout << "index 0: " << list->get(0) << endl;
 //   // cout << "index 1: " << list->get(1) << endl;
 //   // cout << "index 2: " << list->get(2) << endl;
@@ -142,18 +142,18 @@ public:
 //   // cout << list->size() << endl;
 //   // cout << list->get(0) << endl;
 //   // list->remove();
-//   // cout << list->get(0) << endl;
 //   // cout << list->size() << endl;
+//   // cout << list->get(0) << endl;
 //   // list->remove();
-//   // cout << list->get(0) << endl;
 //   // cout << list->size() << endl;
+//   // cout << list->get(0) << endl;
 //   // list->remove();
-//   // cout << list->get(0) << endl;
 //   // cout << list->size() << endl;
+//   // cout << list->get(0) << endl;
 //   // list->push("Lisp");
 //   // list->remove();
-//   // cout << list->get(0) << endl;
 //   // cout << list->size() << endl;
+//   // cout << list->get(0) << endl;
 
 //   // * case3: remove(int index)
 //   // list->remove(4);
