@@ -6,25 +6,26 @@ template <typename T>
 class Vector
 {
 private:
-  int _size = 0;
-  int MAX_SIZE = 10;
-  T *list = new T[10];
+  int _size;
+  int MAX_SIZE;
+  T *list;
 
 public:
   Vector()
   {
+    _size = 0;
+    MAX_SIZE = 10;
+    list = new T[10];
   }
   void push(T el)
   {
     if (_size + 1 >= MAX_SIZE)
     {
       T *newList = new T[MAX_SIZE * 2];
-      for (int i = 0; i < MAX_SIZE; i++)
-      {
-        newList[i] = list[i];
-      }
+      copy(list, list + _size, newList);
       MAX_SIZE *= 2;
       list = newList;
+      delete[] newList;
     }
     list[_size++] = el;
   }
@@ -48,6 +49,7 @@ public:
 
       list = newList;
       MAX_SIZE /= 2;
+      delete[] newList;
     }
     else
     {
@@ -61,6 +63,21 @@ public:
     return _size;
   }
 
+  void clear()
+  {
+    T *newList = new T[10];
+    list = newList;
+    MAX_SIZE = 10;
+    _size = 0;
+    delete[] newList;
+  }
+
+  bool isEmpty()
+  {
+    return _size == 0;
+  }
+
+  // TODO 测试用的
   int maxSize()
   {
     return MAX_SIZE;
@@ -135,6 +152,19 @@ int main()
 
   cout << "[移除后]当前最大长度：" << list->maxSize() << endl;
   cout << "[移除后]当前表长：" << list->size() << endl;
+
+  list->push(1);
+  list->push(2);
+  list->push(3);
+  list->push(4);
+
+  cout << "当前表长：" << list->size() << endl;
+  cout << "是否为空：" << list->isEmpty() << endl;
+
+  list->clear();
+
+  cout << "当前表长：" << list->size() << endl;
+  cout << "是否为空：" << list->isEmpty() << endl;
 
   for (int i = 0; i < list->size(); i++)
   {
