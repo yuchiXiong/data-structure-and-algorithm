@@ -1,5 +1,5 @@
 #include <iostream>
-#include <time.h>
+#include "../../tools/tools.cpp"
 using namespace std;
 
 void bubbleSort(int *arr, int len)
@@ -21,33 +21,16 @@ void bubbleSort(int *arr, int len)
 int main()
 {
 
-  int len = 10;
-  int arr[len];
-  time_t t;
+  int size = 100000;
+  int *arr = ArrayTools::random(size);
 
-  srandom((unsigned)time(&t));
+  clock_t start, end;
 
-  for (int i = 0; i < len; i++)
-  {
-    arr[i] = rand() % 100;
-  }
+  start = clock();
+  bubbleSort(arr, size);
+  end = clock();
 
-  cout << "原数组：";
-  for (int i = 0; i < len; i++)
-  {
-    cout << arr[i] << ' ';
-  }
-  cout << endl;
-
-  bubbleSort(arr, len);
-
-  cout << "排序后：";
-  for (int i = 0; i < len; i++)
-  {
-    cout << arr[i] << ' ';
-  }
-
-  cout << endl;
+  cout << (end - start) / 1000.0 << endl;
 
   return 0;
 }

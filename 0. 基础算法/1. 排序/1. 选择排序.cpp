@@ -1,6 +1,5 @@
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
+#include "../../tools/tools.cpp"
 using namespace std;
 
 void selectSort(int *arr, int len)
@@ -19,33 +18,22 @@ void selectSort(int *arr, int len)
       }
     }
 
-    int tmp = arr[len - i - 1];
-    arr[len - i - 1] = max;
-    arr[maxIndex] = tmp;
+    BasicTools::swap(arr[len - i - 1], arr[maxIndex]);
   }
 }
 
 int main()
 {
-  int len = 20;
-  int arr1[len];
-  time_t t;
+  int len = 100000;
+  int *arr = ArrayTools::random(len);
 
-  srand((unsigned)time(&t));
+  clock_t start, end;
 
-  for (int i = 0; i < len; i++)
-  {
-    arr1[i] = rand() % 256;
-  }
+  start = clock();
+  selectSort(arr, len);
+  end = clock();
 
-  selectSort(arr1, len);
-
-  for (int i = 0; i < len; i++)
-  {
-    cout << arr1[i] << ' ';
-  }
-
-  cout << endl;
+  cout << (end - start) / 1000.0 << endl;
 
   return 0;
 }

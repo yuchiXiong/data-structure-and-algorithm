@@ -5,27 +5,38 @@ using namespace std;
 template <typename T>
 void insert_sort(T *list, int size)
 {
-  for (int i = 0; i < size; i++)
+  for (int i = 1; i < size; i++)
   {
-    for (int j = i; j > 0 && list[j] < list[j - 1]; j--)
+    int current = list[i];
+    int j = i;
+    for (; j > 0 && current < list[j - 1]; j--)
     {
-      BasicTools::swap(list[j], list[j - 1]);
+      // BasicTools::swap(list[j], list[j - 1]);
+      list[j + 1] = list[j];
     }
+    ArrayTools::prinf_arr(list, size);
+
+    list[j + 1] = current;
   }
 }
 
 int main()
 {
+  int size = 10;
   int *arr;
-  arr = ArrayTools::random(20);
+  arr = ArrayTools::random(size);
 
-  cout << "原始数组" << endl;
-  ArrayTools::prinf_arr(arr, 20);
+  clock_t start, end;
 
-  insert_sort(arr, 20);
+  ArrayTools::prinf_arr(arr, size);
 
-  cout << "排序后" << endl;
-  ArrayTools::prinf_arr(arr, 20);
+  start = clock();
+  insert_sort(arr, size);
+  // InsertSort(arr, size);
+  end = clock();
+  // ArrayTools::prinf_arr(arr, size);
+
+  cout << (end - start) / 1000.0 << endl;
 
   return 0;
 }

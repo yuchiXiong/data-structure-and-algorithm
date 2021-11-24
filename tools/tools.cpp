@@ -20,12 +20,12 @@ class ArrayTools
 public:
   static int *random(int size)
   {
-    int *arr;
+    int *arr = new int[size];
     time_t t;
     srandom((unsigned)time(&t));
     for (int i = 0; i < size; i++)
     {
-      arr[i] = rand() % 1000;
+      arr[i] = rand() % 100;
     }
     return arr;
   }
