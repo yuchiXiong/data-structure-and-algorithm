@@ -76,100 +76,85 @@ public:
   {
     return _size == 0;
   }
-
-  // TODO 测试用的
-  int maxSize()
-  {
-    return MAX_SIZE;
-  }
 };
 
-int main()
-{
-  Vector<int> *list = new Vector<int>();
+// int main()
+// {
+//   Vector<int> *list = new Vector<int>();
 
-  list->push(0);
-  list->push(1);
-  list->push(2);
-  list->push(3);
-  list->push(4);
-  list->push(5);
-  list->push(6);
-  list->push(7);
-  list->push(8);
+//   list->push(0);
+//   list->push(1);
+//   list->push(2);
+//   list->push(3);
+//   list->push(4);
+//   list->push(5);
+//   list->push(6);
+//   list->push(7);
+//   list->push(8);
 
-  cout << "当前最大长度：" << list->maxSize() << endl;
+//   list->push(9);
 
-  list->push(9);
+//   list->push(10);
+//   list->push(11);
+//   list->push(12);
+//   list->push(13);
+//   list->push(14);
+//   list->push(15);
+//   list->push(16);
+//   list->push(17);
+//   list->push(18);
 
-  cout << "当前最大长度：" << list->maxSize() << endl;
+//   list->push(19);
 
-  list->push(10);
-  list->push(11);
-  list->push(12);
-  list->push(13);
-  list->push(14);
-  list->push(15);
-  list->push(16);
-  list->push(17);
-  list->push(18);
+//   list->push(20);
+//   list->push(21);
+//   list->push(22);
 
-  cout << "当前最大长度：" << list->maxSize() << endl;
+//   cout << "当前表长：" << list->size() << endl;
 
-  list->push(19);
+//   list->remove(22);
+//   list->remove(21);
+//   list->remove(20);
+//   list->remove(19);
+//   list->remove(18);
+//   list->remove(17);
+//   list->remove(16);
+//   list->remove(15);
+//   list->remove(14);
+//   list->remove(13);
+//   list->remove(12);
+//   list->remove(11);
+//   list->remove(10);
+//   list->remove(9);
+//   list->remove(8);
+//   list->remove(7);
+//   list->remove(6);
+//   list->remove(5);
+//   list->remove(4);
+//   list->remove(3);
+//   list->remove(2);
+//   list->remove(1);
+//   list->remove(0);
 
-  cout << "当前最大长度：" << list->maxSize() << endl;
+//   cout << "[移除后]当前表长：" << list->size() << endl;
 
-  list->push(20);
-  list->push(21);
-  list->push(22);
+//   list->push(1);
+//   list->push(2);
+//   list->push(3);
+//   list->push(4);
 
-  cout << "当前表长：" << list->size() << endl;
+//   cout << "当前表长：" << list->size() << endl;
+//   cout << "是否为空：" << list->isEmpty() << endl;
 
-  list->remove(22);
-  list->remove(21);
-  list->remove(20);
-  list->remove(19);
-  list->remove(18);
-  list->remove(17);
-  list->remove(16);
-  list->remove(15);
-  list->remove(14);
-  list->remove(13);
-  list->remove(12);
-  list->remove(11);
-  list->remove(10);
-  list->remove(9);
-  list->remove(8);
-  list->remove(7);
-  list->remove(6);
-  list->remove(5);
-  list->remove(4);
-  list->remove(3);
-  list->remove(2);
-  list->remove(1);
-  list->remove(0);
+//   list->clear();
 
-  cout << "[移除后]当前最大长度：" << list->maxSize() << endl;
-  cout << "[移除后]当前表长：" << list->size() << endl;
+//   cout << "当前表长：" << list->size() << endl;
+//   cout << "是否为空：" << list->isEmpty() << endl;
 
-  list->push(1);
-  list->push(2);
-  list->push(3);
-  list->push(4);
+//   for (int i = 0; i < list->size(); i++)
+//   {
+//     cout << list->get(i) << ' ';
+//   }
 
-  cout << "当前表长：" << list->size() << endl;
-  cout << "是否为空：" << list->isEmpty() << endl;
-
-  list->clear();
-
-  cout << "当前表长：" << list->size() << endl;
-  cout << "是否为空：" << list->isEmpty() << endl;
-
-  for (int i = 0; i < list->size(); i++)
-  {
-    cout << list->get(i) << ' ';
-  }
-
-  cout << endl;
-}
+//   cout << endl;
+// }
