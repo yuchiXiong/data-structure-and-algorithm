@@ -4,29 +4,37 @@ using namespace std;
 
 void shells_sort(int *list, int size)
 {
-  int incre = size / 3;
+  int incre = size / 100;
   while (incre > 0)
   {
-    for (int i = 0; i < size; i += incre)
+    for (int i = 1; i < size; i += incre)
     {
-      for (int j = i; j > 0 && list[j] < list[j - incre]; j--)
+      int current = list[i];
+      int j = i;
+      for (; j > 0 && current < list[j - incre]; j -= incre)
       {
-        BasicTools::swap(list[j], list[j - incre]);
+        list[j] = list[j - incre];
       }
+      list[j] = current;
     }
-    incre /= 3;
+    incre /= 100;
   }
 };
 
 int main()
 {
-  int size = 100000;
+  int size = 900000;
   int *arr = ArrayTools::random(size);
 
   // cout << "原始数组" << endl;
   // ArrayTools::prinf_arr(arr, size);
+  clock_t start, end;
 
+  start = clock();
   shells_sort(arr, size);
+  end = clock();
+
+  cout << (end - start) / 1000.0 << endl;
 
   // cout << "排序后" << endl;
   // ArrayTools::prinf_arr(arr, size);

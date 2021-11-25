@@ -11,30 +11,23 @@ void insert_sort(T *list, int size)
     int j = i;
     for (; j > 0 && current < list[j - 1]; j--)
     {
-      // BasicTools::swap(list[j], list[j - 1]);
-      list[j + 1] = list[j];
+      list[j] = list[j - 1];
     }
-    ArrayTools::prinf_arr(list, size);
-
-    list[j + 1] = current;
+    list[j] = current;
   }
 }
 
 int main()
 {
-  int size = 10;
+  int size = 100000;
   int *arr;
   arr = ArrayTools::random(size);
 
   clock_t start, end;
 
-  ArrayTools::prinf_arr(arr, size);
-
   start = clock();
   insert_sort(arr, size);
-  // InsertSort(arr, size);
   end = clock();
-  // ArrayTools::prinf_arr(arr, size);
 
   cout << (end - start) / 1000.0 << endl;
 
