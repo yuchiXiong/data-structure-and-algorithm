@@ -30,7 +30,7 @@ public:
     return arr;
   }
   template <typename T>
-  static void prinf_arr(T *t, int size)
+  static void print_arr(T *t, int size)
   {
     for (int i = 0; i < size; i++)
     {
