@@ -3,18 +3,6 @@
 #include <stdlib.h>
 using namespace std;
 
-class BasicTools
-{
-public:
-  template <typename T>
-  static void swap(T &a, T &b)
-  {
-    T temp = a;
-    a = b;
-    b = temp;
-  }
-};
-
 class ArrayTools
 {
 public:
@@ -30,7 +18,7 @@ public:
     return arr;
   }
   template <typename T>
-  static void print_arr(T *t, int size)
+  static void print(T *t, int size)
   {
     for (int i = 0; i < size; i++)
     {

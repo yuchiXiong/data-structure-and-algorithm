@@ -20,7 +20,7 @@ void selectSort(int *arr, int len)
       }
     }
 
-    BasicTools::swap(arr[i], arr[min]);
+    swap(arr[i], arr[min]);
   }
 }
 
