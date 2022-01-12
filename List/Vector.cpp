@@ -21,6 +21,7 @@ private:
   int _size;
   int _maxSize;
   T *_list;
+  int _insertSortSize = 15;
 
 public:
   Vector()
@@ -37,16 +38,15 @@ public:
       copy(_list, _list + _size, newList);
       _maxSize *= 2;
       _list = newList;
+      // newList = NULL;
       // delete[] newList;
     }
     _list[_size++] = el;
   }
-
   T get(int index)
   {
     return _list[index];
   }
-
   void remove(int index)
   {
     if (_size <= _maxSize * 0.25)
@@ -69,12 +69,10 @@ public:
     }
     _size--;
   }
-
   int size()
   {
     return _size;
   }
-
   void clear()
   {
     T *newList = new T[10];
@@ -83,12 +81,15 @@ public:
     _size = 0;
     delete[] newList;
   }
-
   bool isEmpty()
   {
     return _size == 0;
   }
 
+  void algo_shuffle()
+  {
+    algo_shuffle(0, _size - 1);
+  }
   void algo_bubbleSort()
   {
     for (int i = 0; i < _size; i++)
@@ -102,11 +103,10 @@ public:
       }
     }
   }
-
-  // void algo_insertSort()
-  // {
-
-  // }
+  void algo_insertSort()
+  {
+    algo_insertSort(0, _size - 1);
+  }
 
   // void algo_shellSort()
   // {
@@ -119,13 +119,39 @@ public:
 
   void algo_quickSort()
   {
+    // algo_shuffle(0, _size - 1);
     algo_quickSort(0, _size - 1);
   }
 
 private:
+  void algo_shuffle(int low, int high)
+  {
+    for (int i = high - 1; i > low; i--)
+    {
+      int r = rand() % (high - i);
+      swap(_list[i], _list[r]);
+    }
+  }
+  void algo_insertSort(int low, int high)
+  {
+    for (int i = low; i <= high; i++)
+    {
+      int min = i;
+      for (int j = i; j <= high; j++)
+      {
+        if (_list[min] > _list[j])
+          min = j;
+      }
+      swap(_list[i], _list[min]);
+    }
+  }
   void algo_mergeSort(int low, int high)
   {
-
+    if (_size <= _insertSortSize)
+    {
+      algo_insertSort();
+      return;
+    }
     if (high <= low)
       return;
     int mid = low + (high - low) / 2;
@@ -165,6 +191,11 @@ private:
   }
   void algo_quickSort(int low, int high)
   {
+    if (high - low + 1 <= _insertSortSize)
+    {
+      algo_insertSort(low, high);
+      return;
+    }
     if (high <= low)
       return;
     int left = low, right = high, v = _list[low], i = low;
@@ -190,113 +221,10 @@ private:
 
 int main()
 {
-  // * basic test case
-  // Vector<int> *list = new Vector<int>();
-
-  // list->push(0);
-  // list->push(1);
-  // list->push(2);
-  // list->push(3);
-  // list->push(4);
-  // list->push(5);
-  // list->push(6);
-  // list->push(7);
-  // list->push(8);
-
-  // list->push(9);
-
-  // list->push(10);
-  // list->push(11);
-  // list->push(12);
-  // list->push(13);
-  // list->push(14);
-  // list->push(15);
-  // list->push(16);
-  // list->push(17);
-  // list->push(18);
-
-  // list->push(19);
-
-  // list->push(20);
-  // list->push(21);
-  // list->push(22);
-
-  // cout << "当前表长：" << list->size() << endl;
-
-  // list->remove(22);
-  // list->remove(21);
-  // list->remove(20);
-  // list->remove(19);
-  // list->remove(18);
-  // list->remove(17);
-  // list->remove(16);
-  // list->remove(15);
-  // list->remove(14);
-  // list->remove(13);
-  // list->remove(12);
-  // list->remove(11);
-  // list->remove(10);
-  // list->remove(9);
-  // list->remove(8);
-  // list->remove(7);
-  // list->remove(6);
-  // list->remove(5);
-  // list->remove(4);
-  // list->remove(3);
-  // list->remove(2);
-  // list->remove(1);
-  // list->remove(0);
-
-  // cout << "[移除后]当前表长：" << list->size() << endl;
-
-  // list->push(1);
-  // list->push(2);
-  // list->push(3);
-  // list->push(4);
-
-  // cout << "当前表长：" << list->size() << endl;
-  // cout << "是否为空：" << list->isEmpty() << endl;
-
-  // list->clear();
-
-  // cout << "当前表长：" << list->size() << endl;
-  // cout << "是否为空：" << list->isEmpty() << endl;
-
-  // for (int i = 0; i < list->size(); i++)
-  // {
-  //   cout << list->get(i) << ' ';
-  // }
-
-  // cout << endl;
-
-  // * test case by bubble sort
   Vector<int> *list = new Vector<int>();
 
-  // list->push(4);
-  // list->push(1);
-  // list->push(3);
-  // list->push(1);
-  // list->push(9);
-  // list->push(-2);
-  // list->push(5);
-  // cout << list->size() << endl;
-  // cout << "原数组";
-  // for (int i = 0; i < list->size(); i++)
-  // {
-  //   cout << list->get(i) << ' ';
-  // }
-  // cout << endl;
-
-  // list->algo_bubbleSort();
-
-  // cout << "排序后";
-  // for (int i = 0; i < list->size(); i++)
-  // {
-  //   cout << list->get(i) << ' ';
-  // }
-  // cout << endl;
-
-  int len = 1000000;
+  // * 一个用于对比归并排序和快速排序的例子
+  int len = 5000000;
   time_t t;
   srandom((int)time(&t));
 
@@ -304,21 +232,36 @@ int main()
   {
     list->push(rand() % 100000000);
   }
+
   cout << "Random Finished!" << endl;
 
   clock_t start, end;
 
-  cout << "quick sort:";
+  cout << "quick sort: ";
   start = clock();
   list->algo_quickSort();
   end = clock();
 
-  cout << (end - start) / 1000.0 << endl;
+  cout << (end - start) / 1000.0 << " ms" << endl;
 
-  cout << "merge sort:";
-  start = clock();
-  list->algo_mergeSort();
-  end = clock();
+  // cout << "merge sort: ";
+  // start = clock();
+  // list->algo_mergeSort();
+  // end = clock();
 
-  cout << (end - start) / 1000.0 << endl;
+  // cout << (end - start) / 1000.0 << " ms" << endl;
+
+  // cout << "insert sort: ";
+  // start = clock();
+  // list->algo_insertSort();
+  // end = clock();
+
+  // cout << (end - start) / 1000.0 << " ms" << endl;
+
+  // cout << "bubble sort: ";
+  // start = clock();
+  // list->algo_bubbleSort();
+  // end = clock();
+
+  // cout << (end - start) / 1000.0 << " ms" << endl;
 }
