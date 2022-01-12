@@ -117,6 +117,11 @@ public:
     algo_mergeSort(0, _size - 1);
   }
 
+  void algo_quickSort()
+  {
+    algo_quickSort(0, _size - 1);
+  }
+
 private:
   void algo_mergeSort(int low, int high)
   {
@@ -157,6 +162,29 @@ private:
         _list[k] = aux[i++];
       }
     }
+  }
+  void algo_quickSort(int low, int high)
+  {
+    if (high <= low)
+      return;
+    int left = low, right = high, v = _list[low], i = low;
+    while (i <= right)
+    {
+      if (_list[i] < v)
+      {
+        swap(_list[i++], _list[left++]);
+      }
+      else if (_list[i] > v)
+      {
+        swap(_list[i], _list[right--]);
+      }
+      else
+      {
+        i++;
+      }
+    }
+    algo_quickSort(low, left - 1);
+    algo_quickSort(right + 1, high);
   }
 };
 
@@ -268,20 +296,28 @@ int main()
   // }
   // cout << endl;
 
-  int len = 100000;
+  int len = 1000000;
   time_t t;
   srandom((int)time(&t));
 
   for (int i = 0; i < len; i++)
   {
-    list->push(rand() % 100000);
+    list->push(rand() % 100000000);
   }
-  cout << "Finished!" << endl;
+  cout << "Random Finished!" << endl;
 
   clock_t start, end;
 
+  cout << "quick sort:";
   start = clock();
-  list->algo_bubbleSort();
+  list->algo_quickSort();
+  end = clock();
+
+  cout << (end - start) / 1000.0 << endl;
+
+  cout << "merge sort:";
+  start = clock();
+  list->algo_mergeSort();
   end = clock();
 
   cout << (end - start) / 1000.0 << endl;

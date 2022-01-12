@@ -19,8 +19,8 @@
 - [ ] `void algo_insertSort()`: 插入排序
 - [ ] `void algo_shellSort()`: 希尔排序
 - [x] `void algo_mergeSort()`: 归并排序
-- [ ] `void algo_quickSort()`: 快速排序
-- [ ] `void algo_heapSort()`: 堆排序
+- [x] `void algo_quickSort()`: 快速排序
+- ~~[ ] `void algo_heapSort()`: 堆排序~~
 
 ## [LinkedList](https://github.com/yuchiXiong/data-structure/blob/main/List/LinkedList.cpp)
 
