@@ -16,6 +16,7 @@
 以 `algo` 为前缀的为常见的算法函数如排序等。
 
 - [x] `void algo_bubbleSort()`: 冒泡排序
+- [x] `void algo_selectSort()`: 选择排序
 - [ ] `void algo_insertSort()`: 插入排序
 - [ ] `void algo_shellSort()`: 希尔排序
 - [x] `void algo_mergeSort()`: 归并排序

@@ -21,7 +21,7 @@ private:
   int _size;
   int _maxSize;
   T *_list;
-  int _insertSortSize = 15;
+  int _insertSortSize;
 
 public:
   Vector()
@@ -29,6 +29,7 @@ public:
     _size = 0;
     _maxSize = 10;
     _list = new T[10];
+    _insertSortSize = 15;
   }
   void push(T el)
   {
@@ -103,23 +104,19 @@ public:
       }
     }
   }
-  void algo_insertSort()
+  void algo_selectSort()
   {
-    algo_insertSort(0, _size - 1);
+    algo_selectSort(0, _size - 1);
   }
-
-  // void algo_shellSort()
-  // {
-  // }
+  void algo_insertSort() {}
 
   void algo_mergeSort()
   {
     algo_mergeSort(0, _size - 1);
   }
-
   void algo_quickSort()
   {
-    // algo_shuffle(0, _size - 1);
+    algo_shuffle(0, _size - 1);
     algo_quickSort(0, _size - 1);
   }
 
@@ -132,7 +129,7 @@ private:
       swap(_list[i], _list[r]);
     }
   }
-  void algo_insertSort(int low, int high)
+  void algo_selectSort(int low, int high)
   {
     for (int i = low; i <= high; i++)
     {
@@ -145,6 +142,7 @@ private:
       swap(_list[i], _list[min]);
     }
   }
+  void algo_insertSort(int low, int high) {}
   void algo_mergeSort(int low, int high)
   {
     if (_size <= _insertSortSize)
