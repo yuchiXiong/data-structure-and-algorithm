@@ -1,6 +1,26 @@
 # data-structure
 我又双叒叕准备学数据结构啦
 
+- 顺序表
+- 链表
+- 变长数组
+- 顺序队列
+  - 循环队列
+- 链式队列
+- 顺序栈
+- 链式栈
+  - 双向链栈
+- 双端队列
+
+## [LinkedNode](./LinearList/LinkedNode.cpp)
+基本单向链表实现。
+
+**构造函数**
+- [x] `LinkedNode(T value, LinkedNode<T> *next)`: 创建一个节点，并设置节点的数据为value，下一个节点为next。
+
+**成员函数**
+- [x] `void reverse()`: 反转单向链表，~~没啥实现的理由……就是忽然想写一个。。~~
+
 ## [Vector](https://github.com/yuchiXiong/data-structure/blob/main/List/Vector.cpp)
 
 **基本函数**
