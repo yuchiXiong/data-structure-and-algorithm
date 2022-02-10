@@ -44,7 +44,8 @@
 - [x] `void set(int index, T val)`: 将链式线性容器中指定位置的元素设置为val。
 - [x] `void clear()`: 清空链式线性容器。
 
-
+## [SLinkedList](./LinearList/SLinkedList.cpp)
+基于单链表实现的链式线性容器，命名中的 S 指 `Singly`。API 与[LinkedList](./LinearList/LinkedList.cpp)相同。
 
 
 
