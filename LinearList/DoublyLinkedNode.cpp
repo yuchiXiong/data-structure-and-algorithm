@@ -1,3 +1,13 @@
+/**
+ * @file LinkedNode.cpp
+ * @author yuchiXiong (yuchi.xiong@foxmail.com)
+ * @brief 一个简单的双向链表实现
+ * @version 0.1
+ * @date 2022-02-10
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 template <typename T>
 class DoublyLinkedNode
 {

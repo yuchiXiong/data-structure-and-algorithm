@@ -13,13 +13,43 @@
 - 双端队列
 
 ## [LinkedNode](./LinearList/LinkedNode.cpp)
-基本单向链表实现。
+基本单链表实现。
 
 **构造函数**
-- [x] `LinkedNode(T value, LinkedNode<T> *next)`: 创建一个节点，并设置节点的数据为value，下一个节点为next。
+- [x] `LinkedNode(T val, LinkedNode<T> *nextNode = NULL)`: 创建一个节点，设置节点的数据为val，下一个节点为nextNode。
 
 **成员函数**
-- [x] `void reverse()`: 反转单向链表，~~没啥实现的理由……就是忽然想写一个。。~~
+- [x] `void reverse()`: 反转单链表，~~没啥实现的理由……就是忽然想写一个。。~~
+
+## [DoublyLinkedNode](./LinearList/DoublyLinkedNode.cpp)
+基本双向链表实现。
+
+**构造函数**
+- [x] `DoublyLinkedNode(T val, DoublyLinkedNode<T> *nextNode = NULL, DoublyLinkedNode<T> *prevNode = NULL)`: 创建一个节点，设置节点的数据为val，下一个节点为nextNode，上一个节点为prevNode。
+
+## [LinkedList](./LinearList/LinkedList.cpp)
+基于双向链表实现的链式线性容器。
+
+**构造函数**
+- [x] `LinkedList()`: 创建一个空的链式线性容器。
+
+**成员函数**
+- [x] `int size()`: 返回链式线性容器中的元素个数。
+- [x] `bool isEmpty()`: 判断链式线性容器是否为空。
+- [x] `void addFirst(T value)`: 在链式线性容器的头部添加一个元素。
+- [x] `void addLast(T value)`: 在链式线性容器的尾部添加一个元素。
+- [x] `void add(int index, T value)`: 在链式线性容器中的第index个位置插入一个元素value。
+- [x] `T get(int index)`: 获取链式线性容器中指定位置的元素。
+- [x] `void remove(int index)`: 从链式线性容器中删除指定位置的元素。
+- [x] `void set(int index, T val)`: 将链式线性容器中指定位置的元素设置为val。
+- [x] `void clear()`: 清空链式线性容器。
+
+
+
+
+
+
+
 
 ## [Vector](https://github.com/yuchiXiong/data-structure/blob/main/List/Vector.cpp)
 
