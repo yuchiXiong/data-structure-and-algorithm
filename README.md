@@ -1,17 +1,6 @@
 # data-structure
 我又双叒叕准备学数据结构啦
 
-- 顺序表
-- 链表
-- 变长数组
-- 顺序队列
-  - 循环队列
-- 链式队列
-- 顺序栈
-- 链式栈
-  - 双向链栈
-- 双端队列
-
 ## [LinkedNode](./LinearList/LinkedNode.cpp)
 基本单链表实现。
 
@@ -47,14 +36,12 @@
 ## [SLinkedList](./LinearList/SLinkedList.cpp)
 基于单链表实现的链式线性容器，命名中的 S 指 `Singly`。API 与[LinkedList](./LinearList/LinkedList.cpp)相同。
 
+## [Vector](./LinearList/Vector.cpp)
 
+**构造函数**
+- [x] `Vector()`: 创建一个空的数组。
 
-
-
-
-## [Vector](https://github.com/yuchiXiong/data-structure/blob/main/List/Vector.cpp)
-
-**基本函数**
+**成员函数**
 - [x] `void push(T el)`: 添加 `T` 类型元素到列表
 - [x] `T get(int index)`: 获取指定下标的元素
 - [x] `void remove(int index)`: 删除指定下标的元素
@@ -65,7 +52,7 @@
 **算法函数**
 
 以 `algo` 为前缀的为常见的算法函数如排序等。
-
+- [x] `void algo_shuffle()`: 打乱数组中的元素顺序
 - [x] `void algo_bubbleSort()`: 冒泡排序
 - [x] `void algo_selectSort()`: 选择排序
 - [ ] `void algo_insertSort()`: 插入排序

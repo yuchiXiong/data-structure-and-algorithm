@@ -2,7 +2,7 @@
 /**
  * @file Vector.cpp
  * @author yuchiXiong (yuchi.xiong@foxmail.com)
- * @brief A vector class containing common sorting methods.
+ * @brief 基于顺序表（数组）实现的可动态扩容的线性容器，除常见容器操作外，还额外增加了多种排序算法实现。
  * @version 0.1
  * @date 2022-01-11
  * 
@@ -21,6 +21,7 @@ private:
   int _size;
   int _maxSize;
   T *_list;
+  T *_aux;
   int _insertSortSize;
 
 public:
@@ -112,7 +113,10 @@ public:
 
   void algo_mergeSort()
   {
+    _aux = new T[_size];
+    copy(_list, _list + _size, _aux);
     algo_mergeSort(0, _size - 1);
+    delete _aux;
   }
   void algo_quickSort()
   {
@@ -161,29 +165,28 @@ private:
   void algo_merge(int low, int mid, int high)
   {
     int i = low, j = mid + 1;
-    T aux[high + 1];
     for (int i = low; i <= high; i++)
     {
-      aux[i] = _list[i];
+      _aux[i] = _list[i];
     }
 
     for (int k = low; k <= high; k++)
     {
       if (i > mid)
       {
-        _list[k] = aux[j++];
+        _list[k] = _aux[j++];
       }
       else if (j > high)
       {
-        _list[k] = aux[i++];
+        _list[k] = _aux[i++];
       }
-      else if (aux[i] > aux[j])
+      else if (_aux[i] > _aux[j])
       {
-        _list[k] = aux[j++];
+        _list[k] = _aux[j++];
       }
       else
       {
-        _list[k] = aux[i++];
+        _list[k] = _aux[i++];
       }
     }
   }
@@ -235,19 +238,17 @@ int main()
 
   clock_t start, end;
 
-  cout << "quick sort: ";
-  start = clock();
-  list->algo_quickSort();
-  end = clock();
-
-  cout << (end - start) / 1000.0 << " ms" << endl;
-
-  // cout << "merge sort: ";
+  // cout << "quick sort: ";
   // start = clock();
-  // list->algo_mergeSort();
+  // list->algo_quickSort();
   // end = clock();
-
   // cout << (end - start) / 1000.0 << " ms" << endl;
+
+  cout << "merge sort: ";
+  start = clock();
+  list->algo_mergeSort();
+  end = clock();
+  cout << (end - start) / 1000.0 << " ms" << endl;
 
   // cout << "insert sort: ";
   // start = clock();
