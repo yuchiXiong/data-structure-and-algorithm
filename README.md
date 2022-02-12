@@ -46,7 +46,9 @@
 - [x] `Vector()`: 创建一个空的数组。
 
 **成员函数**
-- [x] `void push(T el)`: 添加 `T` 类型元素到列表
+- [x] `void push(T value)`: 添加 `T` 类型元素到列表末尾。
+- [x] `void insert(int index, T value)`: 在指定位置插入 `T` 类型元素。
+- [x] `void set(int index, T value)`: 将指定位置的元素设置为 `T` 类型元素。
 - [x] `T get(int index)`: 获取指定下标的元素
 - [x] `void remove(int index)`: 删除指定下标的元素
 - [x] `int size()`: 获取列表长度

@@ -32,18 +32,27 @@ public:
     _list = new T[10];
     _insertSortSize = 15;
   }
-  void push(T el)
+  void push(T value)
+  {
+    insert(_size, value);
+  }
+  void insert(int index, T value)
   {
     if (_size + 1 >= _maxSize)
     {
-      T *newList = new T[_maxSize * 2];
-      copy(_list, _list + _size, newList);
-      _maxSize *= 2;
-      _list = newList;
-      newList = NULL;
-      delete[] newList;
+      T *oldList = _list;
+      _list = new T[_maxSize *= 2];
+      copy(oldList, oldList + _size, _list);
+      delete[] oldList;
+      oldList = NULL;
     }
-    _list[_size++] = el;
+    copy_backward(_list + index, _list + _size, _list + _size + 1);
+    _list[index] = value;
+    _size++;
+  }
+  void set(int index, T value)
+  {
+    _list[index] = value;
   }
   T get(int index)
   {
@@ -219,7 +228,7 @@ private:
     algo_quickSort(right + 1, high);
   }
 };
-/**
+
 int main()
 {
   Vector<int> *list = new Vector<int>();
@@ -270,4 +279,36 @@ int main()
   // cout << (end - start) / 1000.0 << " ms" << endl;
 }
 
-**/
+// int main()
+// {
+//   Vector<string> *list = new Vector<string>();
+//   list->insert(0, "a");                // a
+//   list->insert(0, "b");                // b a
+//   list->insert(1, "c");                // b c a
+//   list->insert(3, "d");                // b c a d
+//   list->insert(list->size() - 2, "j"); // b c j a d
+//   list->push("e");                     // b c j a d e
+//   list->push("g");                     // b c j a d e g
+//   list->insert(list->size() - 1, "f"); // b c j a d e f g
+//   list->insert(list->size() - 1, "h"); // b c j a d e f h g
+//   list->insert(list->size(), "i");     // b c j a d e f h g i
+//   list->insert(list->size(), "-");     // b c j a d e f h g i -
+//   list->insert(list->size() - 2, "j"); // b c j a d e f h g j i -
+//   list->push("|1");
+//   list->push("|2");
+//   list->push("|3");
+//   list->push("|4");
+//   list->push("|5");
+//   list->push("|6");
+//   list->push("|7");
+//   list->push("|8");
+//   list->push("|9");
+//   list->insert(list->size() - 4, "|10");
+
+//   cout << "size: " << list->size() << endl;
+//   for (int i = 0; i < list->size(); i++)
+//   {
+//     cout << list->get(i) << " ";
+//   }
+//   cout << endl;
+// }
