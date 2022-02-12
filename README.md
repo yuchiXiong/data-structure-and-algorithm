@@ -1,6 +1,10 @@
 # data-structure
 我又双叒叕准备学数据结构啦
 
+[toc]
+
+# 线性结构
+
 ## [LinkedNode](./LinearList/LinkedNode.cpp)
 基本单链表实现。
 
@@ -61,10 +65,18 @@
 - [x] `void algo_quickSort()`: 快速排序
 - ~~[ ] `void algo_heapSort()`: 堆排序~~
 
-## [LinkedList](https://github.com/yuchiXiong/data-structure/blob/main/List/LinkedList.cpp)
+## [LinkedStack](./LinearList/LinkedStack.cpp)
+基于双向链表实现的链式栈数据结构。
 
-## [ListNode](https://github.com/yuchiXiong/data-structure/blob/main/List/ListNode.cpp)
+**构造函数**
+- [x] `LinkedStack()`: 创建一个链式栈。
+
+**成员函数**
+- [x] `int size()`: 返回链式栈中的元素个数。
+- [x] `bool isEmpty()`: 判断链式栈是否为空。
+- [x] `void push(T value)`: 将一个元素压入链式栈的栈顶。
+- [x] `T pop()`: 弹出链式栈的栈顶元素。
 
 ## [Queue](https://github.com/yuchiXiong/data-structure/blob/main/List/Queue.cpp)
 
-## [Stack](https://github.com/yuchiXiong/data-structure/blob/main/List/Stack.cpp)
+
