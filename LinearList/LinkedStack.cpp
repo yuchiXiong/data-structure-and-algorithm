@@ -29,7 +29,7 @@ public:
   }
   bool isEmpty()
   {
-    return _list->size() == 0;
+    return _list->isEmpty();
   }
   void push(T value)
   {
