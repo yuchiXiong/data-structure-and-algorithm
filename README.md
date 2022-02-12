@@ -79,6 +79,9 @@
 - [x] `void push(T value)`: 将一个元素压入链式栈的栈顶。
 - [x] `T pop()`: 弹出链式栈的栈顶元素。
 
+## [ArrayStack](./LinearList/ArrayStack.cpp)
+基于变长数组实现的顺序栈数据结构，API 与 `LinkedStack` 一致。
+
 ## [Queue](https://github.com/yuchiXiong/data-structure/blob/main/List/Queue.cpp)
 
 

@@ -1,7 +1,7 @@
 /**
- * @file LinkedStack.cpp
+ * @file ArrayStack.cpp
  * @author yuchiXiong (yuchi.xiong@foxmail.com)
- * @brief 一个基于双向链表实现的栈数据结构
+ * @brief 一个基于变长数组实现的栈数据结构
  * @version 0.1
  * @date 2022-02-12
  * 
@@ -9,31 +9,31 @@
  * 
  */
 #include <iostream>
-#include "LinkedList.cpp"
+#include "Vector.cpp"
 using namespace std;
 
 template <typename T>
-class LinkedStack
+class ArrayStack
 {
 private:
-  LinkedList<T> *_list;
+  Vector<T> *_list;
 
 public:
-  LinkedStack()
+  ArrayStack()
   {
-    _list = new LinkedList<T>();
-  }
-  int size()
-  {
-    return _list->size();
+    _list = new Vector<T>();
   }
   bool isEmpty()
   {
     return _list->isEmpty();
   }
+  int size()
+  {
+    return _list->size();
+  }
   void push(T value)
   {
-    _list->add(_list->size(), value);
+    _list->push(value);
   }
   T pop()
   {
@@ -45,7 +45,7 @@ public:
 
 // int main()
 // {
-//   LinkedStack<string> *stack = new LinkedStack<string>();
+//   ArrayStack<string> *stack = new ArrayStack<string>();
 
 //   cout << ((stack->isEmpty() == 1) ? "当前栈为空" : "当前栈非空") << endl;
 
