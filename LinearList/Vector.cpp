@@ -40,8 +40,8 @@ public:
       copy(_list, _list + _size, newList);
       _maxSize *= 2;
       _list = newList;
-      // newList = NULL;
-      // delete[] newList;
+      newList = NULL;
+      delete[] newList;
     }
     _list[_size++] = el;
   }
@@ -219,7 +219,7 @@ private:
     algo_quickSort(right + 1, high);
   }
 };
-
+/**
 int main()
 {
   Vector<int> *list = new Vector<int>();
@@ -238,11 +238,16 @@ int main()
 
   clock_t start, end;
 
-  // cout << "quick sort: ";
-  // start = clock();
-  // list->algo_quickSort();
-  // end = clock();
-  // cout << (end - start) / 1000.0 << " ms" << endl;
+  cout << "quick sort: ";
+  start = clock();
+  list->algo_quickSort();
+  end = clock();
+  cout << (end - start) / 1000.0 << " ms" << endl;
+
+  for (int i = 0; i < len; i++)
+  {
+    list->push(rand() % 100000000);
+  }
 
   cout << "merge sort: ";
   start = clock();
@@ -264,3 +269,5 @@ int main()
 
   // cout << (end - start) / 1000.0 << " ms" << endl;
 }
+
+**/
