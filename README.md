@@ -97,4 +97,5 @@
 ## [ArrayQueue](./LinearList/ArrayQueue.cpp)
 基于变长数组实现的顺序队列数据结构，API 与 `LinkedQueue` 一致。
 
-
+## [CircularQueue](./LinearList/CircularQueue.cpp)
+顺序存储的循环队列数据结构实现，API 与 `LinkedQueue` 一致。

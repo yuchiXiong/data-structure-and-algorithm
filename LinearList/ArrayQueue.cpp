@@ -41,14 +41,6 @@ public:
     _list->remove(0);
     return value;
   }
-  void test()
-  {
-    for (int i = 0; i < _list->size(); i++)
-    {
-      cout << _list->get(i) << " ";
-    }
-    cout << endl;
-  }
 };
 
 int main()
