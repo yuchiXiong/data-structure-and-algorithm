@@ -1,3 +1,13 @@
+/**
+ * @file LinkedQueue.cpp
+ * @author yuchiXiong (yuchi.xiong@foxmail.com)
+ * @brief 一个基于双向链表实现的链式存储队列
+ * @version 0.1
+ * @date 2022-02-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <iostream>
 #include "LinkedList.cpp"
 using namespace std;
