@@ -82,6 +82,19 @@
 ## [ArrayStack](./LinearList/ArrayStack.cpp)
 基于变长数组实现的顺序栈数据结构，API 与 `LinkedStack` 一致。
 
+## [LinkedQueue](./LinearList/LinkedQueue.cpp)
+基于双向链表实现的链式队列数据结构。
+
+**构造函数**
+- [x] `LinkedQueue()`: 创建一个链式队列。
+
+**成员函数**
+- [x] `int size()`: 返回链式队列中的元素个数。
+- [x] `int isEmpty()`: 判断链式队列是否为空。
+- [x] `void push(T value)`: 将一个元素放入链式队列的队尾。
+- [x] `T pop()`: 弹出链式队列的队首元素。
+
+
 ## [Queue](https://github.com/yuchiXiong/data-structure/blob/main/List/Queue.cpp)
 
 
