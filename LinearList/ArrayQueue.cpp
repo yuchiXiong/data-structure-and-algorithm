@@ -1,3 +1,13 @@
+/**
+ * @file ArrayQueue.cpp
+ * @author yuchiXing (yuchi.xiong@foxmail.com)
+ * @brief 一个基于变长数组实现的顺序队列
+ * @version 0.1
+ * @date 2022-02-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <iostream>
 #include "Vector.cpp"
 using namespace std;
