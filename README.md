@@ -94,7 +94,7 @@
 - [x] `void push(T value)`: 将一个元素放入链式队列的队尾。
 - [x] `T pop()`: 弹出链式队列的队首元素。
 
-
-## [Queue](https://github.com/yuchiXiong/data-structure/blob/main/List/Queue.cpp)
+## [ArrayQueue](./LinearList/ArrayQueue.cpp)
+基于变长数组实现的顺序队列数据结构，API 与 `LinkedQueue` 一致。
 
 

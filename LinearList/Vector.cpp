@@ -71,7 +71,7 @@ public:
       oldList = NULL;
     }
 
-    copy_backward(_list + index + 1, _list + _size, _list + _size - 1);
+    copy(_list + index + 1, _list + _size, _list + index);
     _size--;
   }
   int size()
@@ -227,50 +227,50 @@ private:
 // int main()
 // {
 //   Vector<int> *list = new Vector<int>();
-
+//
 //   // * 一个用于对比归并排序和快速排序的例子
 //   int len = 5000000;
 //   time_t t;
 //   srandom((int)time(&t));
-
+//
 //   for (int i = 0; i < len; i++)
 //   {
 //     list->push(rand() % 100000000);
 //   }
-
+//
 //   cout << "Random Finished!" << endl;
-
+//
 //   clock_t start, end;
-
+//
 //   cout << "quick sort: ";
 //   start = clock();
 //   list->algo_quickSort();
 //   end = clock();
 //   cout << (end - start) / 1000.0 << " ms" << endl;
-
+//
 //   for (int i = 0; i < len; i++)
 //   {
 //     list->push(rand() % 100000000);
 //   }
-
+//
 //   cout << "merge sort: ";
 //   start = clock();
 //   list->algo_mergeSort();
 //   end = clock();
 //   cout << (end - start) / 1000.0 << " ms" << endl;
-
+//
 //   // cout << "insert sort: ";
 //   // start = clock();
 //   // list->algo_insertSort();
 //   // end = clock();
-
+//
 //   // cout << (end - start) / 1000.0 << " ms" << endl;
-
+//
 //   // cout << "bubble sort: ";
 //   // start = clock();
 //   // list->algo_bubbleSort();
 //   // end = clock();
-
+//
 //   // cout << (end - start) / 1000.0 << " ms" << endl;
 // }
 
