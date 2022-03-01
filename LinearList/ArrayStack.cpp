@@ -4,9 +4,9 @@
  * @brief 一个基于变长数组实现的栈数据结构
  * @version 0.1
  * @date 2022-02-12
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 #include <iostream>
 #include "Vector.cpp"

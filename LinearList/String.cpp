@@ -28,21 +28,21 @@ public:
     output << D->_str;
     return output;
   }
-  int indexOf_BF(const char *str)
+  int indexOf_BF(const char *pattern)
   {
     int result = -1;
     for (int i = 0; i < _len; i++)
     {
       int i_dup = i;
-      if (_str[i] == str[0])
+      if (_str[i] == pattern[0])
       {
         int j = 1;
-        while (str[j] != '\0' && _str[i + 1] == str[j])
+        while (pattern[j] != '\0' && _str[i + 1] == pattern[j])
         {
           i++;
           j++;
         }
-        if (str[j] == '\0')
+        if (pattern[j] == '\0')
         {
           result = i + 1 - j;
           break;
