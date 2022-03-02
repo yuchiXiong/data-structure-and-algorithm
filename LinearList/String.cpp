@@ -99,7 +99,10 @@ public:
       else
       {
         if (j != 0)
-          j = dp[j];
+          {
+            j = dp[j];
+            i--;
+          }
         continue;
       }
     }
@@ -122,9 +125,9 @@ int main()
   // cout << s->indexOf_BF("ld") << endl;  // 9
   // cout << s->indexOf_BF("rld") << endl; // 8
 
-  // cout << s->indexOf_KMP("el") << endl; // 1
+  cout << s->indexOf_KMP("el") << endl; // 1
   cout << s->indexOf_KMP("lo") << endl; // 3
-  // cout << s->indexOf_KMP("rl") << endl;  // 8
-  // cout << s->indexOf_KMP("ld") << endl;  // 9
-  // cout << s->indexOf_KMP("rld") << endl; // 8
+  cout << s->indexOf_KMP("rl") << endl;  // 8
+  cout << s->indexOf_KMP("ld") << endl;  // 9
+  cout << s->indexOf_KMP("rld") << endl; // 8
 }
