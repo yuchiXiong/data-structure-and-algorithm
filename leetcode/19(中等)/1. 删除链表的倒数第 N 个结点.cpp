@@ -15,66 +15,46 @@ class Solution
 public:
   ListNode *removeNthFromEnd(ListNode *head, int n)
   {
+    if (head == nullptr)
+      return nullptr;
+
+    if (head->next == nullptr)
+      return nullptr;
+
+    if ((head->next->next == nullptr) && (n == 2))
+      return head->next;
+    else if ((head->next->next == nullptr) && (n == 1))
+    {
+      head->next = nullptr;
+      return head;
+    }
+
     ListNode *p = head;
-    int count = 0;
-    int size = 0;
-    while (p)
+    ListNode *s_p = nullptr;
+
+    int i = 0;
+    while (p != nullptr)
     {
+      i++;
       p = p->next;
-      size++;
-    }
 
-    if (size == 1)
-      return NULL;
-
-    p = head;
-    int target = size - n - 1;
-    if (target < 0)
-    {
-      p = p->next;
-      return p;
-    }
-    while (p)
-    {
-
-      if (count == target)
+      if (i == n + 1)
       {
-        p->next = p->next->next;
-        break;
+        s_p = head;
       }
-      p = p->next;
-      count++;
+      else if (i > n)
+      {
+        s_p = s_p->next;
+      }
     }
+
+    if (s_p == nullptr)
+    {
+      return head->next;
+    }
+    else
+      s_p->next = s_p->next->next;
+
     return head;
   }
 };
-
-int main()
-{
-  Solution *s = new Solution();
-
-  ListNode *l1 = new ListNode(5, NULL);
-  ListNode *l2 = new ListNode(4, l1);
-  ListNode *l3 = new ListNode(3, l2);
-  ListNode *l4 = new ListNode(2, l3);
-  ListNode *l5 = new ListNode(1, l4);
-
-  ListNode *l = s->removeNthFromEnd(l5, 2); // 1 2 3 5
-
-  // ListNode *l1 = new ListNode(1, NULL);
-
-  // ListNode *l = s->removeNthFromEnd(l1, 1); // []
-
-  // ListNode *l1 = new ListNode(2, NULL);
-  // ListNode *l2 = new ListNode(1, l1);
-
-  // ListNode *l = s->removeNthFromEnd(l2, 1); // 1
-  // ListNode *l = s->removeNthFromEnd(l2, 2); // 2
-
-  ListNode *p = l;
-  while (p)
-  {
-    cout << p->val << endl;
-    p = p->next;
-  }
-}
