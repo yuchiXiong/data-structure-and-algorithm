@@ -8,17 +8,19 @@ public:
   int lengthOfLongestSubstring(string s)
   {
     int i = 0, j = 0, ans = 0;
-    vector<int> hash = vector<int>(256, -1);
+    int map[256] = {0};
+    for (int i = 0; i < 256; i++)
+      map[i] = -1;
 
     while (i < s.size())
     {
-      if (hash[s[i]] != -1)
+      if (map[s[i]] != -1)
       {
-        j = hash[s[i]] + 1 > j ? hash[s[i]] + 1 : j;
+        j = map[s[i]] + 1 > j ? map[s[i]] + 1 : j;
       }
 
       ans = ans > i - j + 1 ? ans : i - j + 1;
-      hash[s[i]] = i;
+      map[s[i]] = i;
       i++;
     }
 
