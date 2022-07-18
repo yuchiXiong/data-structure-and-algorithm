@@ -2,7 +2,7 @@
 
 [数据结构： 线性表](https://xiongyuchi.top/2022/02/13/xian-xing-biao/)
 
-## [LinkedNode](./LinearList/LinkedNode.cpp)
+## [LinkedNode](./LinkedNode.cpp)
 基本单链表实现。
 
 **构造函数**
@@ -11,13 +11,13 @@
 **成员函数**
 - [x] `void reverse()`: 反转单链表，~~没啥实现的理由……就是忽然想写一个。。~~
 
-## [DoublyLinkedNode](./LinearList/DoublyLinkedNode.cpp)
+## [DoublyLinkedNode](./DoublyLinkedNode.cpp)
 基本双向链表实现。
 
 **构造函数**
 - [x] `DoublyLinkedNode(T val, DoublyLinkedNode<T> *nextNode = NULL, DoublyLinkedNode<T> *prevNode = NULL)`: 创建一个节点，设置节点的数据为val，下一个节点为nextNode，上一个节点为prevNode。
 
-## [LinkedList](./LinearList/LinkedList.cpp)
+## [LinkedList](./LinkedList.cpp)
 基于双向链表实现的链式线性容器。
 
 **构造函数**
@@ -34,10 +34,10 @@
 - [x] `void set(int index, T val)`: 将链式线性容器中指定位置的元素设置为val。
 - [x] `void clear()`: 清空链式线性容器。
 
-## [SLinkedList](./LinearList/SLinkedList.cpp)
-基于单链表实现的链式线性容器，命名中的 S 指 `Singly`。API 与[LinkedList](./LinearList/LinkedList.cpp)相同。
+## [SLinkedList](./SLinkedList.cpp)
+基于单链表实现的链式线性容器，命名中的 S 指 `Singly`。API 与[LinkedList](./LinkedList.cpp)相同。
 
-## [Vector](./LinearList/Vector.cpp)
+## [Vector](./Vector.cpp)
 
 **构造函数**
 - [x] `Vector()`: 创建一个空的数组。
@@ -64,7 +64,7 @@
 - [x] `void algo_quickSort()`: 快速排序
 - ~~[ ] `void algo_heapSort()`: 堆排序~~
 
-## [LinkedStack](./LinearList/LinkedStack.cpp)
+## [LinkedStack](./LinkedStack.cpp)
 基于双向链表实现的链式栈数据结构。
 
 **构造函数**
@@ -76,10 +76,10 @@
 - [x] `void push(T value)`: 将一个元素压入链式栈的栈顶。
 - [x] `T pop()`: 弹出链式栈的栈顶元素。
 
-## [ArrayStack](./LinearList/ArrayStack.cpp)
+## [ArrayStack](./ArrayStack.cpp)
 基于变长数组实现的顺序栈数据结构，API 与 `LinkedStack` 一致。
 
-## [LinkedQueue](./LinearList/LinkedQueue.cpp)
+## [LinkedQueue](./LinkedQueue.cpp)
 基于双向链表实现的链式队列数据结构。
 
 **构造函数**
@@ -91,8 +91,8 @@
 - [x] `void push(T value)`: 将一个元素放入链式队列的队尾。
 - [x] `T pop()`: 弹出链式队列的队首元素。
 
-## [ArrayQueue](./LinearList/ArrayQueue.cpp)
+## [ArrayQueue](./ArrayQueue.cpp)
 基于变长数组实现的顺序队列数据结构，API 与 `LinkedQueue` 一致。
 
-## [CircularQueue](./LinearList/CircularQueue.cpp)
+## [CircularQueue](./CircularQueue.cpp)
 顺序存储的循环队列数据结构实现，API 与 `LinkedQueue` 一致。
