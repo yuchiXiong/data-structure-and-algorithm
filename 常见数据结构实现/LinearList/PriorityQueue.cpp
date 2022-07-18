@@ -1,5 +1,5 @@
 #include "iostream"
-#include "./Vector.cpp"
+#include "vector"
 #include "../../tools/tools.cpp"
 using namespace std;
 
@@ -8,12 +8,12 @@ class PriorityQueue
 {
 
 public:
-  int _data[2000000];
+  vector<T> _data;
   int _capacity;
   int _size;
   PriorityQueue()
   {
-    _data[0] = -999;
+    _data.push_back(-999);
     _size = 1;
     _capacity = 10;
   }
@@ -27,9 +27,8 @@ public:
   }
   void push(int val)
   {
-    _data[_size] = val;
-    _swim(_size);
-    _size++;
+    _data.push_back(val);
+    _swim(_size++);
   }
   int max()
   {
@@ -39,6 +38,7 @@ public:
   {
     int tmp = _data[1];
     _data[1] = _data[_size - 1];
+    _data.pop_back();
     _size--;
     _sink(1);
     return tmp;
@@ -101,12 +101,16 @@ int main()
 {
   PriorityQueue<int> pq;
 
-  int casesCount = 2000000;
+  int casesCount = 10000000;
   int *cases = ArrayTools::random(casesCount);
+  clock_t start, end;
+
   for (int i = 0; i < casesCount; i++)
   {
     pq.push(cases[i]);
   }
+
+  start = clock();
 
   int cur = pq.pop();
   bool flag = true;
@@ -119,6 +123,8 @@ int main()
     }
     cur = pq.pop();
   }
+  end = clock();
+  cout << (end - start) / 1000.0 << endl;
 
   cout << "验证" << (flag ? "通过" : "不通过") << " 样本数：" << casesCount << endl;
 }
