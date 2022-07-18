@@ -1,11 +1,12 @@
-# Data Structure And Algorithm
-- 我就想看看这是我第多少次准备学算法
-- 我又双叒叕准备学数据结构啦
+# Teach YourSelf About Data Structure And Algorithm.
+✊我就想看看这是我第多少次准备学算法/数据结构。
 
 **目录**
-1. 数据结构部分
-    1. [线性结构](./LinearList/README.md)
-2. 算法部分
+1. 常见数据结构实现
+    1. [线性表](./%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E7%8E%B0/LinearList/README.md)
+    2. [树](./%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E7%8E%B0/Tree/)
+    3. [并查集](./%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E7%8E%B0/UnionFind/)
+2. 刷题练习
     1. **留坑**
         1. leetcode
             - 306 累加数(DFS)
