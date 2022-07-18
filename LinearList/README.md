@@ -1,6 +1,6 @@
 # 线性结构
 
-[数据结构： 线性表](https://yuchixiong.github.io/yuchi.xiong.blogs/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8.html)
+[数据结构： 线性表](https://xiongyuchi.top/2022/02/13/xian-xing-biao/)
 
 ## [LinkedNode](./LinearList/LinkedNode.cpp)
 基本单链表实现。
