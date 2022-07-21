@@ -40,21 +40,26 @@ public:
     for (int i = 0; i < lists.size(); i++)
     {
       ListNode *p = lists[i];
-      while (p)
-      {
+
+      if (p != nullptr)
         pq.push(p);
-        p = p->next;
-      }
     }
 
     ListNode *ans = new ListNode(-1, nullptr);
     ListNode *p = ans;
     while (pq.size() != 0)
     {
-      p->next = pq.top();
-      p = p->next;
-      p->next = nullptr;
+      ListNode *cur = pq.top();
+      p->next = cur;
+
       pq.pop();
+
+      if (cur->next != nullptr)
+      {
+        pq.push(cur->next);
+      }
+
+      p = p->next;
     }
 
     return ans->next;
