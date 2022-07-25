@@ -1,5 +1,4 @@
 #include "iostream"
-#include "vector"
 using namespace std;
 /**
  * Definition for a binary tree node.
@@ -26,39 +25,45 @@ struct TreeNode
 class CBTInserter
 {
 public:
-  TreeNode *_root;
+  TreeNode *head;
+  TreeNode *nodes[2001];
+  int size;
+
   CBTInserter(TreeNode *root)
   {
-    _root = root;
-  }
-
-  int insert(int val)
-  {
-    TreeNode *nodes[1002];
-    nodes[1] = _root;
+    head = root;
+    nodes[1] = root;
 
     int i = 1, j = 2;
     while (true)
     {
-      nodes[j++] = nodes[i]->left;
-      nodes[j++] = nodes[i]->right;
-      if (nodes[i + 1] == NULL)
+      nodes[i]->left && (nodes[j++] = nodes[i]->left);
+      nodes[i]->right && (nodes[j++] = nodes[i]->right);
+      if (i + 1 == j)
       {
-        TreeNode *parent = nodes[(i + 1) / 2];
-        parent->left != NULL
-            ? (parent->right = new TreeNode(val))
-            : (parent->left = new TreeNode(val));
         break;
       }
       i++;
     }
 
-    return nodes[(i + 1) / 2]->val;
+    size = j;
+  }
+
+  int insert(int val)
+  {
+    TreeNode *parent = nodes[size / 2];
+    TreeNode *cur = new TreeNode(val);
+
+    parent->left != nullptr
+        ? (parent->right = cur)
+        : (parent->left = cur);
+    nodes[size++] = cur;
+    return nodes[(size - 1) / 2]->val;
   }
 
   TreeNode *get_root()
   {
-    return _root;
+    return head;
   }
 };
 
@@ -70,10 +75,12 @@ public:
  */
 int main()
 {
-  CBTInserter *cbt = new CBTInserter(new TreeNode(1));
+  CBTInserter *cbt = new CBTInserter(new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3, new TreeNode(6), nullptr)));
 
   // cout << cbt->get_root()->val << endl;
-  cout << cbt->insert(2) << endl;
+  cout << cbt->insert(7) << endl;
+  cout << cbt->insert(8) << endl;
+  // cout << cbt->insert(4) << endl;
   cout << cbt->get_root()->val << endl;
-  cout << cbt->get_root()->left->val << endl;
+  // cout << cbt->get_root()->left->val << endl;
 }
