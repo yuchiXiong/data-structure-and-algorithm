@@ -34,15 +34,14 @@ public:
 
   int insert(int val)
   {
-    vector<TreeNode *> nodes;
-    nodes.push_back(new TreeNode(-1));
-    nodes.push_back(_root);
+    TreeNode *nodes[1002];
+    nodes[1] = _root;
 
-    int i = 1;
+    int i = 1, j = 2;
     while (true)
     {
-      nodes.push_back(nodes[i]->left);
-      nodes.push_back(nodes[i]->right);
+      nodes[j++] = nodes[i]->left;
+      nodes[j++] = nodes[i]->right;
       if (nodes[i + 1] == NULL)
       {
         TreeNode *parent = nodes[(i + 1) / 2];
