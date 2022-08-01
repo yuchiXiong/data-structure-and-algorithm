@@ -96,3 +96,16 @@
 
 ## [CircularQueue](./CircularQueue.cpp)
 顺序存储的循环队列数据结构实现，API 与 `LinkedQueue` 一致。
+
+## [PriorityQueue](./PriorityQueue.cpp)
+基于二叉堆实现的优先队列数据结构。
+
+**构造函数**
+- [x] `PriorityQueue()`: 创建一个优先队列。
+
+**成员函数**
+- [x] `int size()`: 返回优先队列中的元素个数。
+- [x] `bool isEmpty()`: 判断优先队列是否为空。
+- [x] `void push(T value)`: 将一个元素加入优先队列并进行上浮操作。
+- [x] `T max()`: 获取优先队列中最大的元素。
+- [x] `T pop()`: 弹出优先队列中最大的元素并进行下沉操作。
