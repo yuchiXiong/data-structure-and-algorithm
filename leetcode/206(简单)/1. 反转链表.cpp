@@ -16,15 +16,32 @@ class Solution
 public:
   ListNode *reverseList(ListNode *head)
   {
-    ListNode *result = NULL, *current = head;
+    if (head == NULL || head->next == NULL)
+      return head;
+
+    ListNode *last = reverseList(head->next);
+    head->next->next = head;
+    head->next = NULL;
+
+    return last;
+  }
+
+  ListNode *reverseList2(ListNode *head)
+  {
+    ListNode *current = head->next;
+    ListNode *p = head;
 
     while (current)
     {
-      result = new ListNode(current->val, result);
-      current = current->next;
+      ListNode *next = current->next;
+      current->next = p;
+      if (p == head)
+        p->next = NULL;
+      p = current;
+      current = next;
     }
 
-    return result;
+    return p;
   }
 
   void case1()
@@ -55,6 +72,7 @@ public:
   {
     ListNode *l1 = new ListNode(1);
     ListNode *l2 = new ListNode(2);
+    l1->next = l2;
 
     ListNode *result = reverseList(l1);
 
@@ -73,4 +91,5 @@ int main()
   Solution *s = new Solution();
 
   s->case1();
+  s->case2();
 }
