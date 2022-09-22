@@ -26,18 +26,21 @@ public:
   }
   void unionNode(int a, int b)
   {
-    if (getRootNode(a) == getRootNode(b))
+    int parentA = getRootNode(a);
+    int parentB = getRootNode(b);
+
+    if (parentA == parentB)
       return;
 
     if (treeSize[b] > treeSize[a])
     {
-      parent[b] = a;
-      treeSize[a] += treeSize[b];
+      parent[parentB] = parentA;
+      treeSize[parentA] += treeSize[parentB];
     }
     else
     {
-      parent[a] = b;
-      treeSize[b] += treeSize[a];
+      parent[parentA] = parentB;
+      treeSize[parentB] += treeSize[parentA];
     }
   }
   bool connected(int a, int b)
@@ -63,16 +66,22 @@ int main()
   uf->unionNode(1, 2);
   uf->unionNode(2, 3);
   uf->unionNode(3, 8);
-  uf->unionNode(4, 3400);
+  uf->unionNode(3400, 3);
 
-  cout << uf->connected(1, 3) << endl;
-  cout << uf->connected(1, 8) << endl;
-  cout << uf->connected(1, 5) << endl;
-  cout << uf->connected(1, 3400) << endl;
+  cout << uf->connected(1, 3) << endl;    // 1
+  cout << uf->connected(1, 8) << endl;    // 1
+  cout << uf->connected(1, 5) << endl;    // 0
+  cout << uf->connected(1, 3400) << endl; // 1
+  cout << uf->connected(2, 3400) << endl; // 1
+  cout << uf->connected(3, 3400) << endl; // 1
+  cout << uf->connected(8, 3400) << endl; // 1
 
-  uf->unionNode(4, 8);
+  uf->unionNode(8, 4);
 
-  cout << uf->connected(1, 3400) << endl;
+  cout << uf->connected(1, 3400) << endl; // 1
+  cout << uf->connected(2, 3400) << endl; // 1
+  cout << uf->connected(8, 3400) << endl; // 1
+  cout << uf->connected(4, 3400) << endl; // 1
 
   return 0;
 }
