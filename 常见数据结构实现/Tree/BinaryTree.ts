@@ -1,4 +1,4 @@
-class BinaryTree<T> {
+export default class BinaryTree<T> {
   public val: T;
   public left: BinaryTree<T> | null = null;
   public right: BinaryTree<T> | null = null;
