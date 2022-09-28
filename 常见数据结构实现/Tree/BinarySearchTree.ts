@@ -7,11 +7,11 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
   public right: BinarySearchTree<T> | null;
   public _size: number;
 
-  constructor(val: T) {
+  constructor(val: T, left?: BinarySearchTree<T> | null, right?: BinarySearchTree<T> | null) {
     super(val, null, null);
     this.val = val;
-    this.left = null;
-    this.right = null;
+    this.left = left || null;
+    this.right = right || null;
     this._size = 1;
   }
 
@@ -95,30 +95,30 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
   }
 }
 
-const mockData: number[] = [...new Set(new Array(9999).fill(0).map(_ => Math.floor(Math.random() * 9999)))]
-let bst: BinarySearchTree<number> | null = null;
-mockData.forEach((cur, i) => {
-  if (i === 0) {
-    bst = new BinarySearchTree<number>(cur);
-  } else {
-    bst!.put(cur);
-  }
-});
+// const mockData: number[] = [...new Set(new Array(9999).fill(0).map(_ => Math.floor(Math.random() * 9999)))]
+// let bst: BinarySearchTree<number> | null = null;
+// mockData.forEach((cur, i) => {
+//   if (i === 0) {
+//     bst = new BinarySearchTree<number>(cur);
+//   } else {
+//     bst!.put(cur);
+//   }
+// });
 
-const sorted = mockData.sort((a, b) => a - b);
-console.log("验证有序性: ", bst!.dfs('in').join('-') === sorted.join('-'));
-console.log("当前BST大小: ", bst!._size);
-console.log("验证顺次:", sorted.every((item, index) => bst!.get(index) === item));
-console.log("验证最大值", bst!.getMax().val === sorted[sorted.length - 1]);
-console.log("验证最小值", bst!.getMin().val === sorted[0]);
+// const sorted = mockData.sort((a, b) => a - b);
+// console.log("验证有序性: ", bst!.dfs('in').join('-') === sorted.join('-'));
+// console.log("当前BST大小: ", bst!._size);
+// console.log("验证顺次:", sorted.every((item, index) => bst!.get(index) === item));
+// console.log("验证最大值", bst!.getMax().val === sorted[sorted.length - 1]);
+// console.log("验证最小值", bst!.getMin().val === sorted[0]);
 
-while (bst !== null) {
-  const randomIndex = Math.floor(Math.random() * mockData.length);
-  bst = (bst as BinarySearchTree<number>).remove(mockData[randomIndex]);
-  mockData.splice(randomIndex, 1);
+// while (bst !== null) {
+//   const randomIndex = Math.floor(Math.random() * mockData.length);
+//   bst = (bst as BinarySearchTree<number>).remove(mockData[randomIndex]);
+//   mockData.splice(randomIndex, 1);
 
-  if ((bst?.dfs('in') || []).join('|') !== mockData.sort((a, b) => a - b).join('|')) {
-    console.log('删除验证失败！')
-    break;
-  }
-}
+//   if ((bst?.dfs('in') || []).join('|') !== mockData.sort((a, b) => a - b).join('|')) {
+//     console.log('删除验证失败！')
+//     break;
+//   }
+// }
