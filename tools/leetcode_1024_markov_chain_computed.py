@@ -1,7 +1,7 @@
 from itertools import permutations
 
-nums = [2, 2, 965, 32, 5, 34, 2,  9, 7, 996, 1024]
-opts = []
+nums = [24, 29, 965, 32, 5, 34, 2,  9, 7, 996]
+opts = ['^']
 numset = set(permutations(nums, 4))
 optset = set(permutations(opts, 3))
 ans = []
