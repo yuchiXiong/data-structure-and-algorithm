@@ -3,8 +3,7 @@
  * @return {number}
  */
 var numDifferentIntegers = function (word) {
-  word
-  return Number(word);
+  return [...new Set(word.replace(/[a-z]/g, ' ').split(' ').filter(i => i !== '').map(BigInt))].length;
 };
 
 console.log(numDifferentIntegers("a123bc34d8ef34"));
