@@ -1,4 +1,4 @@
-import BinaryTree from "./BinaryTree";
+import BinaryTreeNode from "./BinaryTreeNode";
 
 export interface BinarySearchTreeNodeValue<K, V> {
   key: K,
@@ -14,7 +14,7 @@ export interface Valuable {
 }
 
 export default class BinarySearchTree<K extends Valuable, V>
-  extends BinaryTree<BinarySearchTreeNodeValue<K, V>>
+  extends BinaryTreeNode<BinarySearchTreeNodeValue<K, V>>
   implements Comparable<K> {
 
   public val: BinarySearchTreeNodeValue<K, V>;

@@ -1,15 +1,21 @@
-export default class BinaryTree<T> {
+export default class BinaryTreeNode<T> {
   public val: T;
-  public left: BinaryTree<T> | null = null;
-  public right: BinaryTree<T> | null = null;
-  private _bfs_queue: Array<BinaryTree<T>> = [];
+  public left: BinaryTreeNode<T> | null = null;
+  public right: BinaryTreeNode<T> | null = null;
+  /** 用于层次优先遍历的队列 */
+  private _bfs_queue: Array<BinaryTreeNode<T>> = [];
 
-  constructor(val: T, left?: BinaryTree<T> | null | undefined, right?: BinaryTree<T> | null | undefined) {
+  constructor(val: T, left?: BinaryTreeNode<T> | null | undefined, right?: BinaryTreeNode<T> | null | undefined) {
     this.val = val;
     this.left = left || null;
     this.right = right || null;
   }
 
+  /**
+   * 深度优先遍历
+   * @param {'pre' | 'in' | 'post'} order - 遍历方式，先序遍历/中序遍历/后序遍历
+   * @returns {Array<T>}
+   */
   dfs(order: "pre" | "in" | "post"): Array<T> {
     switch (order) {
       case "pre":
@@ -21,6 +27,10 @@ export default class BinaryTree<T> {
     }
   }
 
+  /**
+   * 层次优先遍历
+   * @returns {Array<T>}
+   */
   bfs(): Array<T> {
     this._bfs_queue.push(this);
     const result: Array<T> = [];

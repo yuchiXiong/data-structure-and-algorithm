@@ -93,29 +93,29 @@ export default class RedBlackTree<K extends Valuable, V> extends BinarySearchTre
 
 };
 
-const SIZE = 100000;
-const mockData = [...new Set(new Array(SIZE).fill('').map(() => Math.floor(Math.random() * 999999999)))];
+// const SIZE = 100000;
+// const mockData = [...new Set(new Array(SIZE).fill('').map(() => Math.floor(Math.random() * 999999999)))];
 
-let rbtree: RedBlackTree<number, number>;
+// let rbtree: RedBlackTree<number, number>;
 
-console.log('测试数据规模: ', SIZE, ' 实际产生的不重复数据量: ', mockData.length);
+// console.log('测试数据规模: ', SIZE, ' 实际产生的不重复数据量: ', mockData.length);
 
-console.time('插入红黑树耗时: ');
-mockData.forEach((item, index) => {
-  if (index === 0) {
-    rbtree = new RedBlackTree<number, number>(item, item);
-  } else {
-    rbtree = rbtree.put(item, item);
-  }
-});
-console.timeEnd('插入红黑树耗时: ');
+// console.time('插入红黑树耗时: ');
+// mockData.forEach((item, index) => {
+//   if (index === 0) {
+//     rbtree = new RedBlackTree<number, number>(item, item);
+//   } else {
+//     rbtree = rbtree.put(item, item);
+//   }
+// });
+// console.timeEnd('插入红黑树耗时: ');
 
-console.log("验证红黑树大小: ", rbtree!._size, rbtree!._size === mockData.length);
+// console.log("验证红黑树大小: ", rbtree!._size, rbtree!._size === mockData.length);
 
-console.log('验证红黑树中序遍历有序: ', rbtree!.dfs('in').map(i => i.key).join('|') === mockData.sort((a, b) => a - b).join('|'));
+// console.log('验证红黑树中序遍历有序: ', rbtree!.dfs('in').map(i => i.key).join('|') === mockData.sort((a, b) => a - b).join('|'));
 
-console.time('亿次随机访问耗时: ');
-for (let i = 0; i < 100000000; i++) {
-  rbtree!.get(mockData[Math.floor(Math.random() * mockData.length)]);
-}
-console.timeEnd('亿次随机访问耗时: ');
+// console.time('亿次随机访问耗时: ');
+// for (let i = 0; i < 100000000; i++) {
+//   rbtree!.get(mockData[Math.floor(Math.random() * mockData.length)]);
+// }
+// console.timeEnd('亿次随机访问耗时: ');
