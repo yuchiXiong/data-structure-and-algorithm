@@ -9,7 +9,7 @@ interface Comparable<T> {
   compareTo: (o: T) => 0 | -1 | 1
 }
 
-interface Valuable {
+export interface Valuable {
   valueOf: Function
 }
 
@@ -124,37 +124,37 @@ export default class BinarySearchTree<K extends Valuable, V>
   }
 }
 
-const mockData: number[] = [...new Set(new Array(10000).fill(0).map(_ => Math.floor(Math.random() * 20)))]
+// const mockData: number[] = [...new Set(new Array(10000).fill(0).map(_ => Math.floor(Math.random() * 20)))]
 
-console.time('gen');
-let bst: BinarySearchTree<number, number> | null = null;
-mockData.forEach((cur, i) => {
-  if (i === 0) {
-    bst = new BinarySearchTree<number, number>(cur, cur);
-  } else {
-    bst!.put(cur, cur);
-  }
-});
-console.timeEnd('gen');
+// console.time('gen');
+// let bst: BinarySearchTree<number, number> | null = null;
+// mockData.forEach((cur, i) => {
+//   if (i === 0) {
+//     bst = new BinarySearchTree<number, number>(cur, cur);
+//   } else {
+//     bst!.put(cur, cur);
+//   }
+// });
+// console.timeEnd('gen');
 
-const sorted = mockData.sort((a, b) => a - b);
-console.log("验证有序性: ", bst!.dfs('in').map(i => i.value).join('-') === sorted.join('-'));
-console.log("验证BST大小: ", bst!._size === sorted.length);
-console.log("验证最大值", bst!.getMax().val.value === sorted[sorted.length - 1]);
-console.log("验证最小值", bst!.getMin().val.value === sorted[0]);
+// const sorted = mockData.sort((a, b) => a - b);
+// console.log("验证有序性: ", bst!.dfs('in').map(i => i.value).join('-') === sorted.join('-'));
+// console.log("验证BST大小: ", bst!._size === sorted.length);
+// console.log("验证最大值", bst!.getMax().val.value === sorted[sorted.length - 1]);
+// console.log("验证最小值", bst!.getMin().val.value === sorted[0]);
 
 
 
-console.time('remove')
-while (bst !== null) {
+// console.time('remove')
+// while (bst !== null) {
 
-  bst = (bst as BinarySearchTree<number, number>).remove(mockData[0]);
-  // mockData.splice(randomIndex, 1);
-  mockData.shift();
+//   bst = (bst as BinarySearchTree<number, number>).remove(mockData[0]);
+//   // mockData.splice(randomIndex, 1);
+//   mockData.shift();
 
-  if ((bst?.dfs('in') || []).map(i => i.value).join('|') !== mockData.sort((a, b) => a - b).join('|')) {
-    console.log('删除验证失败！')
-    break;
-  }
-}
-console.timeEnd('remove')
+//   if ((bst?.dfs('in') || []).map(i => i.value).join('|') !== mockData.sort((a, b) => a - b).join('|')) {
+//     console.log('删除验证失败！')
+//     break;
+//   }
+// }
+// console.timeEnd('remove')

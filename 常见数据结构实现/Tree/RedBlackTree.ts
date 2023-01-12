@@ -1,44 +1,43 @@
-import BinarySearchTree from "./BinarySearchTree";
+import BinarySearchTree, { Valuable } from "./BinarySearchTree";
 
-export default class RedBlackTree<T> extends BinarySearchTree<T> {
+export default class RedBlackTree<K extends Valuable, V> extends BinarySearchTree<K, V> {
 
   static RED: 'RED' | 'BLACK' = "RED";
   static BLACK: 'RED' | 'BLACK' = "BLACK";
 
-  left: RedBlackTree<T> | null;
-  right: RedBlackTree<T> | null;
+  left: RedBlackTree<K, V> | null = null;
+  right: RedBlackTree<K, V> | null = null;
   _color: 'RED' | 'BLACK';
 
-  constructor(val: T, left?: RedBlackTree<T> | null, right?: RedBlackTree<T> | null) {
-    super(val, left || null, right || null);
-    this.left = left || null;
-    this.right = right || null;
+  constructor(key: K, value: V, compareTo?: (key: K) => 0 | 1 | -1) {
+    super(key, value, compareTo);
     this._color = RedBlackTree.BLACK;
     this._size = 1;
   }
 
-  put(val: T): RedBlackTree<T> {
-    if (this.val === val) return this;
+  put(key: K, value: V): RedBlackTree<K, V> {
+    const compareResult = this.compareTo(key);
+    if (compareResult === 0) return this;
 
-    if (val < this.val) {
+    if (compareResult < 0) {
       if (this.left) {
-        this.left = this.left.put(val);
+        this.left = this.left.put(key, value);
       } else {
-        this.left = new RedBlackTree<T>(val);
+        this.left = new RedBlackTree<K, V>(key, value, this.compareTo);
         this.left._color = RedBlackTree.RED;
       }
     } else {
       if (this.right) {
-        this.right = this.right.put(val);
+        this.right = this.right.put(key, value);
       } else {
-        this.right = new RedBlackTree<T>(val);
+        this.right = new RedBlackTree<K, V>(key, value, this.compareTo);
         this.right._color = RedBlackTree.RED;
       }
     }
 
     this._size = (this.left?._size || 0) + 1 + (this.right?._size || 0);
 
-    let node = this as RedBlackTree<T>;
+    let node = this as RedBlackTree<K, V>;
     if (!node.left?.isRed() && node.right?.isRed()) {
       node = node.leftRotate();
     }
@@ -54,8 +53,8 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
     return node;
   }
 
-  leftRotate(): RedBlackTree<T> {
-    const node = this.right as RedBlackTree<T>;
+  leftRotate(): RedBlackTree<K, V> {
+    const node = this.right as RedBlackTree<K, V>;
     this.right = node?.left || null;
     node.left = this;
 
@@ -67,8 +66,8 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
     return node;
   }
 
-  rightRotate(): RedBlackTree<T> {
-    const node = this.left as RedBlackTree<T>;
+  rightRotate(): RedBlackTree<K, V> {
+    const node = this.left as RedBlackTree<K, V>;
     this.left = node?.right || null;
     node.right = this;
 
@@ -80,7 +79,7 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
     return node;
   }
 
-  blackNode(): RedBlackTree<T> {
+  blackNode(): RedBlackTree<K, V> {
     this._color = RedBlackTree.RED;
     this.left!._color = RedBlackTree.BLACK;
     this.right!._color = RedBlackTree.BLACK;
@@ -94,26 +93,26 @@ export default class RedBlackTree<T> extends BinarySearchTree<T> {
 
 };
 
-const SIZE = 10000000;
+const SIZE = 100000;
 const mockData = [...new Set(new Array(SIZE).fill('').map(() => Math.floor(Math.random() * 999999999)))];
 
-let rbtree: RedBlackTree<number>;
+let rbtree: RedBlackTree<number, number>;
 
 console.log('测试数据规模: ', SIZE, ' 实际产生的不重复数据量: ', mockData.length);
 
 console.time('插入红黑树耗时: ');
 mockData.forEach((item, index) => {
   if (index === 0) {
-    rbtree = new RedBlackTree<number>(item);
+    rbtree = new RedBlackTree<number, number>(item, item);
   } else {
-    rbtree = rbtree.put(item);
+    rbtree = rbtree.put(item, item);
   }
 });
 console.timeEnd('插入红黑树耗时: ');
 
 console.log("验证红黑树大小: ", rbtree!._size, rbtree!._size === mockData.length);
 
-console.log('验证红黑树中序遍历有序: ', rbtree!.dfs('in').join('|') === mockData.sort((a, b) => a - b).join('|'));
+console.log('验证红黑树中序遍历有序: ', rbtree!.dfs('in').map(i => i.key).join('|') === mockData.sort((a, b) => a - b).join('|'));
 
 console.time('亿次随机访问耗时: ');
 for (let i = 0; i < 100000000; i++) {
