@@ -1,31 +1,60 @@
 import BinaryTree from "./BinaryTree";
 
-export default class BinarySearchTree<T> extends BinaryTree<T> {
+export interface BinarySearchTreeNodeValue<K, V> {
+  key: K,
+  value: V
+}
 
-  public val: T;
-  public left: BinarySearchTree<T> | null;
-  public right: BinarySearchTree<T> | null;
-  public _size: number;
+interface Comparable<T> {
+  compareTo: (o: T) => 0 | -1 | 1
+}
 
-  constructor(val: T, left?: BinarySearchTree<T> | null, right?: BinarySearchTree<T> | null) {
-    super(val, null, null);
-    this.val = val;
-    this.left = left || null;
-    this.right = right || null;
+interface Valuable {
+  valueOf: Function
+}
+
+export default class BinarySearchTree<K extends Valuable, V>
+  extends BinaryTree<BinarySearchTreeNodeValue<K, V>>
+  implements Comparable<K> {
+
+  public val: BinarySearchTreeNodeValue<K, V>;
+  public left: BinarySearchTree<K, V> | null = null;
+  public right: BinarySearchTree<K, V> | null = null;
+  public _size: number = 0;
+
+  constructor(key: K, value: V, compareTo?: (key: K) => 0 | 1 | -1) {
+    super({ key, value }, null, null);
+    this.val = { key, value };
     this._size = 1;
+    compareTo && (this.compareTo = compareTo);
   }
 
-  put(val: T): void {
-    if (this.val === val) return;
+  compareTo(key: K): 0 | 1 | -1 {
 
-    if (val < this.val) {
+    if (!key.valueOf) {
+      throw 'key not is valuable'
+    }
+
+    if (key.valueOf() === this.val.key!.valueOf()) return 0;
+    return key.valueOf() > this.val.key!.valueOf() ? 1 : -1
+  }
+
+
+  put(key: K, value: V): void {
+    const compareResult = this.compareTo(key);
+    if (compareResult === 0) {
+      this.val.value = value;
+      return;
+    }
+
+    if (compareResult < 0) {
       this.left
-        ? this.left.put(val)
-        : this.left = new BinarySearchTree<T>(val);
+        ? this.left.put(key, value)
+        : this.left = new BinarySearchTree<K, V>(key, value, this.compareTo);
     } else {
       this.right
-        ? this.right.put(val)
-        : this.right = new BinarySearchTree<T>(val);
+        ? this.right.put(key, value)
+        : this.right = new BinarySearchTree<K, V>(key, value, this.compareTo);
     }
     this._size = (this.left?._size || 0) + 1 + (this.right?._size || 0);
   }
@@ -34,47 +63,47 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
     return (this.left?.size() || 0) + (this.right?.size() || 0) + 1;
   }
 
-  get(index: number): T | null {
-    if (index < 0 || index > this._size) return null;
+  get(key: K): V | null {
+    const compareResult = this.compareTo(key)
+    if (compareResult === 0) return this.val.value
 
-    const left = this.left?._size || 0;
+    if (this.left === null && this.right === null) return null;
 
-    if (index === left) {
-      return this.val;
-    } else if (index < left) {
-      return this.left ? this.left.get(index) : null;
+    if (compareResult < 0) {
+      return this.left ? this.left.get(key) : null;
     } else {
-      return this.right ? this.right.get(index - left - 1) : null;
+      return this.right ? this.right.get(key) : null;
     }
   }
 
-  contain(val: T): boolean {
-    if (val === this.val) return true;
+  contain(key: K): boolean {
+    if (key === this.val.key) return true;
 
-    if (val < this.val) {
-      return this.left ? this.left.contain(val) : false;
+    if (key < this.val.key) {
+      return this.left ? this.left.contain(key) : false;
     } else {
-      return this.right ? this.right.contain(val) : false;
+      return this.right ? this.right.contain(key) : false;
     }
   }
 
-  getMax(): BinarySearchTree<T> {
+  getMax(): BinarySearchTree<K, V> {
     if (!this.right) return this;
     return this.right.getMax();
   }
 
-  getMin(): BinarySearchTree<T> {
+  getMin(): BinarySearchTree<K, V> {
     if (!this.left) return this;
     return this.left.getMin();
   }
 
-  remove(val: T): BinarySearchTree<T> | null {
-    if (!this.contain(val)) return this;
+  remove(key: K): BinarySearchTree<K, V> | null {
+    if (!this.contain(key)) return this;
 
-    if (val < this.val) {
-      this.left && (this.left = this.left?.remove(val));
-    } else if (val > this.val) {
-      this.right && (this.right = this.right?.remove(val));
+    const compareResult = this.compareTo(key);
+    if (compareResult < 0) {
+      this.left && (this.left = this.left?.remove(key));
+    } else if (compareResult > 0) {
+      this.right && (this.right = this.right?.remove(key));
     } else {
       if (!this.left && !this.remove) return null;
       if (!this.left) return this.right;
@@ -82,9 +111,9 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
 
       // 选择一个新的节点当作当前节点
       const min = this.right.getMin();
-      const next = new BinarySearchTree<T>(min.val);
+      const next = new BinarySearchTree<K, V>(min.val.key, min.val.value);
 
-      next.right = this.right.remove(min.val);
+      next.right = this.right.remove(min.val.key);
       next.left = this.left;
       next._size = this.size();
 
@@ -95,35 +124,37 @@ export default class BinarySearchTree<T> extends BinaryTree<T> {
   }
 }
 
-// const mockData: number[] = [...new Set(new Array(500000).fill(0).map(_ => Math.floor(Math.random() * 9999999)))]
+const mockData: number[] = [...new Set(new Array(10000).fill(0).map(_ => Math.floor(Math.random() * 20)))]
 
-// console.time('gen');
-// let bst: BinarySearchTree<number> | null = null;
-// mockData.forEach((cur, i) => {
-//   if (i === 0) {
-//     bst = new BinarySearchTree<number>(cur);
-//   } else {
-//     bst!.put(cur);
-//   }
-// });
-// console.timeEnd('gen');
+console.time('gen');
+let bst: BinarySearchTree<number, number> | null = null;
+mockData.forEach((cur, i) => {
+  if (i === 0) {
+    bst = new BinarySearchTree<number, number>(cur, cur);
+  } else {
+    bst!.put(cur, cur);
+  }
+});
+console.timeEnd('gen');
 
-// const sorted = mockData.sort((a, b) => a - b);
-// console.log("验证有序性: ", bst!.dfs('in').join('-') === sorted.join('-'));
-// console.log("验证BST大小: ", bst!._size === sorted.length);
-// console.log("验证顺次:", sorted.every((item, index) => bst!.get(index) === item));
-// console.log("验证最大值", bst!.getMax().val === sorted[sorted.length - 1]);
-// console.log("验证最小值", bst!.getMin().val === sorted[0]);
+const sorted = mockData.sort((a, b) => a - b);
+console.log("验证有序性: ", bst!.dfs('in').map(i => i.value).join('-') === sorted.join('-'));
+console.log("验证BST大小: ", bst!._size === sorted.length);
+console.log("验证最大值", bst!.getMax().val.value === sorted[sorted.length - 1]);
+console.log("验证最小值", bst!.getMin().val.value === sorted[0]);
 
-// console.time('remove')
-// while (bst !== null) {
-//   const randomIndex = Math.floor(Math.random() * mockData.length);
-//   bst = (bst as BinarySearchTree<number>).remove(mockData[randomIndex]);
-//   mockData.splice(randomIndex, 1);
 
-//   if ((bst?.dfs('in') || []).join('|') !== mockData.sort((a, b) => a - b).join('|')) {
-//     console.log('删除验证失败！')
-//     break;
-//   }
-// }
-// console.timeEnd('remove')
+
+console.time('remove')
+while (bst !== null) {
+
+  bst = (bst as BinarySearchTree<number, number>).remove(mockData[0]);
+  // mockData.splice(randomIndex, 1);
+  mockData.shift();
+
+  if ((bst?.dfs('in') || []).map(i => i.value).join('|') !== mockData.sort((a, b) => a - b).join('|')) {
+    console.log('删除验证失败！')
+    break;
+  }
+}
+console.timeEnd('remove')
