@@ -9,14 +9,6 @@ export default class TreeMap<K extends Valuable, V>  {
     this._size = 0;
   }
 
-  *[Symbol.iterator]() {
-    const result: Array<any> = this._tree?.dfs('in') || [];
-
-    for (let i = 0; i < result.length; i++) {
-      yield result[i].key;
-    }
-  };
-
   set(key: K, value: V) {
     if (!this._tree) {
       this._tree = new RedBlackTree<K, V>(key, value)
