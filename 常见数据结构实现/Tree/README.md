@@ -33,7 +33,7 @@
 - [x] `getMax(): BinarySearchTree<K, V>`: 返回当前节点为根结点的 BST 中的最大 key 节点
 - [x] `getMin(): BinarySearchTree<K, V>`: 返回当前节点为根结点的 BST 中的最小 key 节点
 - [x] `remove(key: K): BinarySearchTree<K, V> | null`: 返回从当前节点为根结点的 BST 中移除了指定 key 节点后的新的 BST 根结点，**由于该操作可能删除根结点，导致返回的新 BST 与原 BST 根结点不相同，这需要重新赋值以完成 BST 局部的修改**
-- [x] `compareTo(key: K): 0 | 1 | -1`: 用于比对当前节点与给定 key 之间大小关系的接口方法，它来自于 Comparable 接口。默认情况下，该方法依赖于 valueOf 方法的结果，可通过构造函数传参的方式重写内部逻辑实现自定以的排序规则
+- [x] `compareTo(key: K): 0 | 1 | -1`: 用于比对当前节点与给定 key 之间大小关系的接口方法，它来自于 Comparable 接口。默认情况下，该方法依赖于 valueOf 方法的结果，可通过构造函数传参的方式重写内部逻辑实现自定义的排序规则
 
 ## [RedBlackTree](./RedBlackTree.ts)
 
