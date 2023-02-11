@@ -13,9 +13,7 @@ var fillCups = function (amount) {
       const min = Math.min(...amount);
       const index = amount.findIndex(i => i === min);
       amount = amount.map((num, i) => index === i ? num : num - 1);
-    } else if (zeroCount === 1) {
-      amount = amount.map(i => i === 0 ? 0 : i - 1);
-    } else if (zeroCount === 2) {
+    } else {
       amount = amount.map(i => i === 0 ? 0 : i - 1);
     }
   }
