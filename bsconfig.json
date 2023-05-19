@@ -1,0 +1,17 @@
+{
+  "name": "data-structures-and-algorithms",
+  "sources": [
+    {
+      "dir": "leetcode",
+      "subdirs": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "bs-dependencies": []
+}

@@ -1,2 +1,6 @@
 a.out
 .vscode
+node_modules
+*.bs.js
+*.bs.js.map
+/lib/
